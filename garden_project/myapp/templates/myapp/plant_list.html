@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PLANT LIST</h1>
+
+    {% if plants %}
+        <table border="1">
+            <tr></tr>
+                <th>Plant Name</th>
+                <th>Plant Type</th>
+                <th>Plant Price</th>
+                <th>Actions</th>
+            </tr>
+            {% for p in plants %}
+                <tr>
+                    <td>{{p.plantName}}</td>
+                    <td>{{p.plantType}}</td>
+                    <td>{{p.plantPrice}}</td>
+                    <td>
+                        <ul style="display: inline; list-style-type: none;">
+                            <li><a href="{% url 'update' p.id %}">Update</a></li>
+                            <li><a href="{% url 'delete' p.id %}">Delete</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <a href="{% url 'insert' %}">Insert New Plant</a>
+</body>
+</html>
